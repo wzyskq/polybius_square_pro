@@ -17,9 +17,9 @@ In order to improve its encryption strength, the author made the following impro
 
 4. ↩️Reverse scrambles, decrypts the newly generated password with the key in reverse order to obtain garbled code
 
-## Feature
+## ✨Feature
 
-1. The same plaintext output ciphertext is different
+1. The same plaintext output **ciphertext is different**
 
 2. Decrypt the text immediately after encryption for easy verification
 
@@ -27,11 +27,11 @@ In order to improve its encryption strength, the author made the following impro
 
 4. The output ciphertext is highly complex and about twice as long as the plaintext
 
-5. The key can be customized and there are many kinds of the same character 81! Combination mode
+5. The key can be **customized** and there are many kinds of the same character 81! Combination mode
 
 6. Input plaintext length up to 1000+ characters (more parameters can be used, but not recommended)
 
-## Getting started
+## ✈️Getting started
 
 ### web 
 
@@ -47,7 +47,7 @@ git clone https://github.com/wzyskq/polybius_square_pro.git
 ```python
 pip install polybius-square-pro
 ```
-## Usage
+## 🎉Usage
 
 **clone:**
 
