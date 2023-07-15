@@ -16,37 +16,55 @@
 
 <body>
     <div class="title">
-        <h1>Polybius Pquare Pro</h1>
+        <h1>Polybius Square Pro</h1>
         <p>An encryption and decryption tool</p>
     </div>
     <div class="container">
         <div class="panel">
             <div class="box">
-                <p>Encode: </p>
+                <p>Encode&nbsp;: </p>
                 <input type="text" id="encode">
                 <i class="bi bi-x-circle" onclick="clean('en')"></i>
             </div>
             <div class="box">
-                <p>Result:</p>
+                <p>Result&nbsp;:</p>
                 <input type="text" id="enout">
+                <i class="bi bi-arrow-clockwise" onclick="recode()"></i>
                 <i class="bi bi-clipboard" onclick="copy('enout')"></i>
             </div>
             <br>
             <div class="box">
-                <p>Dncode: </p>
+                <p>Dncode&nbsp;: </p>
                 <input type="text" id="decode">
                 <i class="bi bi-x-circle" onclick="clean('de')"></i>
             </div>
             <div class="box">
-                <p>Result:</p>
+                <p>Result&nbsp;:</p>
                 <input type="text" id="deout">
                 <i class="bi bi-clipboard" onclick="copy('deout')"></i>
+            </div>
+            <br>
+            <div class="box">
+                <p>Elem&nbsp;:</p>
+                <input type="text" id="argu">
+                <span id="argulen"></span>
+                <i class="bi bi-x-circle arrow" onclick="clean('argu')"></i>
+                <i class="bi bi-clipboard" onclick="copy('argu')"></i>
+            </div>
+            <div class="box">
+                <p>Key&nbsp;:</p>
+                <input type="text" id="keybox">
+                <i class="bi bi-x-circle arrow" onclick="clean('keybox')"></i>
+                <i class="bi bi-clipboard" onclick="copy('keybox')"></i>
+            </div>
+            <div class="box">
+                <!-- <iframe src="https://wzyskq.github.io/polybius_square_pro/README.md"></iframe> -->
             </div>
         </div>
         <div class="key">
             <table>
                 <tr>
-                    <td></td>
+                    <td id="cricon"><i class="bi bi-x-circle" onclick="cleankey()"></i></td>
 
                     <td>0</td>
                     <td>1</td>
@@ -62,143 +80,150 @@
                 </tr>
                 <tr>
                     <td>0</td>
-                    <td><input type="text" name="keyin" id="k00"></td>
-                    <td><input type="text" name="keyin" id="k01"></td>
-                    <td><input type="text" name="keyin" id="k02"></td>
-                    <td><input type="text" name="keyin" id="k03"></td>
-                    <td><input type="text" name="keyin" id="k04"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
 
-                    <td><input type="text" name="keyin" id="k05"></td>
-                    <td><input type="text" name="keyin" id="k06"></td>
-                    <td><input type="text" name="keyin" id="k07"></td>
-                    <td><input type="text" name="keyin" id="k08"></td>
-                    <td><input type="text" name="keyin" id="k09"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td><input type="text" name="keyin" id="k10"></td>
-                    <td><input type="text" name="keyin" id="k11"></td>
-                    <td><input type="text" name="keyin" id="k12"></td>
-                    <td><input type="text" name="keyin" id="k13"></td>
-                    <td><input type="text" name="keyin" id="k14"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
 
-                    <td><input type="text" name="keyin" id="k15"></td>
-                    <td><input type="text" name="keyin" id="k16"></td>
-                    <td><input type="text" name="keyin" id="k17"></td>
-                    <td><input type="text" name="keyin" id="k18"></td>
-                    <td><input type="text" name="keyin" id="k19"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td><input type="text" name="keyin" id="k20"></td>
-                    <td><input type="text" name="keyin" id="k21"></td>
-                    <td><input type="text" name="keyin" id="k22"></td>
-                    <td><input type="text" name="keyin" id="k23"></td>
-                    <td><input type="text" name="keyin" id="k24"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
 
-                    <td><input type="text" name="keyin" id="k25"></td>
-                    <td><input type="text" name="keyin" id="k26"></td>
-                    <td><input type="text" name="keyin" id="k27"></td>
-                    <td><input type="text" name="keyin" id="k28"></td>
-                    <td><input type="text" name="keyin" id="k29"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td><input type="text" name="keyin" id="k30"></td>
-                    <td><input type="text" name="keyin" id="k31"></td>
-                    <td><input type="text" name="keyin" id="k32"></td>
-                    <td><input type="text" name="keyin" id="k33"></td>
-                    <td><input type="text" name="keyin" id="k34"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
 
-                    <td><input type="text" name="keyin" id="k35"></td>
-                    <td><input type="text" name="keyin" id="k36"></td>
-                    <td><input type="text" name="keyin" id="k37"></td>
-                    <td><input type="text" name="keyin" id="k38"></td>
-                    <td><input type="text" name="keyin" id="k39"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td><input type="text" name="keyin" id="k40"></td>
-                    <td><input type="text" name="keyin" id="k41"></td>
-                    <td><input type="text" name="keyin" id="k42"></td>
-                    <td><input type="text" name="keyin" id="k43"></td>
-                    <td><input type="text" name="keyin" id="k44"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
 
-                    <td><input type="text" name="keyin" id="k45"></td>
-                    <td><input type="text" name="keyin" id="k46"></td>
-                    <td><input type="text" name="keyin" id="k47"></td>
-                    <td><input type="text" name="keyin" id="k48"></td>
-                    <td><input type="text" name="keyin" id="k49"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td><input type="text" name="keyin" id="k50"></td>
-                    <td><input type="text" name="keyin" id="k51"></td>
-                    <td><input type="text" name="keyin" id="k52"></td>
-                    <td><input type="text" name="keyin" id="k53"></td>
-                    <td><input type="text" name="keyin" id="k54"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
 
-                    <td><input type="text" name="keyin" id="k55"></td>
-                    <td><input type="text" name="keyin" id="k56"></td>
-                    <td><input type="text" name="keyin" id="k57"></td>
-                    <td><input type="text" name="keyin" id="k58"></td>
-                    <td><input type="text" name="keyin" id="k59"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td><input type="text" name="keyin" id="k60"></td>
-                    <td><input type="text" name="keyin" id="k61"></td>
-                    <td><input type="text" name="keyin" id="k62"></td>
-                    <td><input type="text" name="keyin" id="k63"></td>
-                    <td><input type="text" name="keyin" id="k64"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
 
-                    <td><input type="text" name="keyin" id="k65"></td>
-                    <td><input type="text" name="keyin" id="k66"></td>
-                    <td><input type="text" name="keyin" id="k67"></td>
-                    <td><input type="text" name="keyin" id="k68"></td>
-                    <td><input type="text" name="keyin" id="k69"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
                 </tr>
                 <tr>
                     <td>7</td>
-                    <td><input type="text" name="keyin" id="k70"></td>
-                    <td><input type="text" name="keyin" id="k71"></td>
-                    <td><input type="text" name="keyin" id="k72"></td>
-                    <td><input type="text" name="keyin" id="k73"></td>
-                    <td><input type="text" name="keyin" id="k74"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
 
-                    <td><input type="text" name="keyin" id="k75"></td>
-                    <td><input type="text" name="keyin" id="k76"></td>
-                    <td><input type="text" name="keyin" id="k77"></td>
-                    <td><input type="text" name="keyin" id="k78"></td>
-                    <td><input type="text" name="keyin" id="k79"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
                 </tr>
                 <tr>
                     <td>8</td>
-                    <td><input type="text" name="keyin" id="k80"></td>
-                    <td><input type="text" name="keyin" id="k81"></td>
-                    <td><input type="text" name="keyin" id="k82"></td>
-                    <td><input type="text" name="keyin" id="k83"></td>
-                    <td><input type="text" name="keyin" id="k84"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
 
-                    <td><input type="text" name="keyin" id="k85"></td>
-                    <td><input type="text" name="keyin" id="k86"></td>
-                    <td><input type="text" name="keyin" id="k87"></td>
-                    <td><input type="text" name="keyin" id="k88"></td>
-                    <td><input type="text" name="keyin" id="k89"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
                 </tr>
                 <tr>
                     <td>9</td>
-                    <td><input type="text" name="keyin" id="k90"></td>
-                    <td><input type="text" name="keyin" id="k91"></td>
-                    <td><input type="text" name="keyin" id="k92"></td>
-                    <td><input type="text" name="keyin" id="k93"></td>
-                    <td><input type="text" name="keyin" id="k94"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
 
-                    <td><input type="text" name="keyin" id="k95"></td>
-                    <td><input type="text" name="keyin" id="k96"></td>
-                    <td><input type="text" name="keyin" id="k97"></td>
-                    <td><input type="text" name="keyin" id="k98"></td>
-                    <td><input type="text" name="keyin" id="k99"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                    <td><input type="text" name="keyin"></td>
+                </tr>
+                <tr>
+                    <td><i class="bi bi-clipboard" onclick="copy('key')"></i></td>
+                    <td colspan="2" onclick="savekey()">Save</td>
+                    <td colspan="2" onclick="loadkey()">Load</td>
+                    <td colspan="3" onclick="random()">Random</td>
+                    <td colspan="3" onclick="sequential()">Sequential</td>
                 </tr>
             </table>
         </div>
@@ -208,6 +233,7 @@
 </body>
 
 </html>
+
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="web/calculate.js"></script>

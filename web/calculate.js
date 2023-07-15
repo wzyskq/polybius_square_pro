@@ -1,21 +1,23 @@
-var key = [
-    ['A', 'B', 'C', 'D', 'E', '0', '1', '2', '3', '4'],
-    ['F', 'G', 'H', 'I', 'K', '5', '6', '7', '8', '9'],
-    ['L', 'M', 'N', 'O', 'P', '*', '/', '+', '-', '='],
-    ['Q', 'R', 'S', 'T', 'U', '!', '@', '#', '$', '%'],
-    ['V', 'W', 'X', 'Y', 'Z', '^', '&', '_', '[', ']'],
-    ['a', 'b', 'c', 'd', 'e', '.', ',', ':', ';', '`'],
-    ['f', 'g', 'h', 'i', 'k', '~', '|', '<', '>', ' '],
-    ['l', 'm', 'n', 'o', 'p', '(', ')', '{', '}', '\\'],
-    ['q', 'r', 's', 't', 'u', 'J', 'j', '\'', '\"', '《'],
-    ['v', 'w', 'x', 'y', 'z', '⌈', '⌋', '⌊', '⌉', '》']
-];
-
 class PolybiusSquire {
-    static key = key;
+    static keybase = [
+        ['A', 'B', 'C', 'D', 'E', '0', '1', '2', '3', '4'],
+        ['F', 'G', 'H', 'I', 'K', '5', '6', '7', '8', '9'],
+        ['L', 'M', 'N', 'O', 'P', '*', '/', '+', '-', '='],
+        ['Q', 'R', 'S', 'T', 'U', '!', '@', '#', '$', '%'],
+        ['V', 'W', 'X', 'Y', 'Z', '^', '&', '_', '[', ']'],
+        ['a', 'b', 'c', 'd', 'e', '.', ',', ':', ';', '`'],
+        ['f', 'g', 'h', 'i', 'k', '~', '|', '<', '>', ' '],
+        ['l', 'm', 'n', 'o', 'p', '(', ')', '{', '}', '\\'],
+        ['q', 'r', 's', 't', 'u', 'J', 'j', '\'', '\"', '?'],
+        ['v', 'w', 'x', 'y', 'z', '⌈', '⌋', '⌊', '⌉', '·']
+    ];
+    static key = this.keybase
 
     static encode(message) {
-        const key = PolybiusSquire.key;
+        var key = PolybiusSquire.key;
+        // var key
+        // if (keymode == 'keybase') key = PolybiusSquire.keybase;
+        // else key = PolybiusSquire.key;
         const codeList = [];
 
         for (let char of message) {
@@ -37,6 +39,10 @@ class PolybiusSquire {
 
     static decode(ciphertext) {
         const key = PolybiusSquire.key;
+        // var key
+        // if (keymode == 'keybase') key = PolybiusSquire.keybase;
+        // else key = PolybiusSquire.key;
+
         const originalList = [];
 
         try {
@@ -132,7 +138,7 @@ class Core {
         const poe = PolybiusSquire.encode(string);
         if (!poe) {
             // console.log(this.error);
-            reminder(Core.error,4000)
+            reminder(Core.error, 4000)
         } else {
             const doe = Double.encode(poe);
             const ple = Plugins.encode(doe);
@@ -150,7 +156,7 @@ class Core {
             return pod;
         } catch (error) {
             // console.log(this.error);
-            reminder(Core.error,4000)
+            reminder(Core.error, 4000)
         }
     }
 }

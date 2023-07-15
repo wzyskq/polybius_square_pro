@@ -39,7 +39,8 @@ h1
     margin: 10px;
 }
 
-.key{
+.key
+{
     margin: 10px;
 }
 
@@ -48,6 +49,46 @@ table
 {
     border-spacing: 10px;
     margin-top: 30px;
+}
+
+tr
+{
+    &:first-child{
+        td{
+            background-color: rgba(0, 200, 255, 0.15);
+
+            &:first-child {
+                background-color: rgba(255, 192, 203, 0.5);
+                transition: all 0.5s ease-out;
+
+                &:hover{
+                    background: linear-gradient(145deg, rgba(255, 192, 203, 0.5), #f0f0f0);
+                    box-shadow:  4px 4px 8px #bebebe,
+                        -4px -4px 8px #ffffff;
+                    .bi{
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+
+    &:last-child
+    {
+        td{
+            background-color: rgba(255, 192, 203, 0.5);
+            transition: all 0.5s ease-out;
+
+            &:hover{
+                background: linear-gradient(145deg, rgba(255, 192, 203, 0.5), #f0f0f0);
+                box-shadow:  4px 4px 8px #bebebe,
+                    -4px -4px 8px #ffffff;
+                .bi{
+                    color: #000;
+                }
+            }
+        }
+    }
 }
 
 td
@@ -63,6 +104,11 @@ td
     background: #e0e0e0;
     box-shadow: 4px 4px 8px #bebebe,
         -4px -4px 8px #ffffff;
+
+    &:first-child
+    {
+        background-color: rgba(0, 200, 255, 0.15);
+    }
 }
 
 input
@@ -81,7 +127,7 @@ input
 
 .panel
 {
-    min-width: 50%;
+    width: 520px;
     height: 100%;
     margin: 20px;
     padding: 10px;
@@ -90,14 +136,17 @@ input
     box-shadow: 5px 5px 10px #bebebe,
         -5px -5px 10px #ffffff;
 
-    input{
+    input
+    {
         margin: 0 10px;
         text-align: left;
-        text-indent: 2px;
+        text-indent: 3px;
         overflow: scroll;
         border-bottom: 1px rgba(0, 0, 0, 0.3) solid;
     }
-    span{
+
+    span
+    {
         margin: 0 10px;
     }
 }
@@ -111,11 +160,29 @@ input
 
 }
 
+#argulen {
+    color: rgba(0, 0, 0, 0.3);
+    margin-left: -8px;
+}
+
 .bi
 {
     // display: none;
     transition: all 0.2s linear;
-    &:hover{
+
+    &:hover
+    {
         color: rgba(0, 0, 0, 0.5);
     }
+}
+
+.bi-arrow-clockwise
+{
+    margin-right: 10px;
+    transform: rotate(45deg) translateY(-2px);
+    font-size: 18px;
+}
+.arrow {
+    margin-right: 10px;
+    transform: translateY(1px);
 }
