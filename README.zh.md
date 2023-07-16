@@ -23,7 +23,7 @@
 
 ### 网站
 
-( ￣︶￣ )✓ 它仍在建设中，您可以期待一下qwq
+在线版本已经发布 [立即尝试 ✓](https://wzyskq.github.io/polybius_square_pro/)
 
 ### 安装
 

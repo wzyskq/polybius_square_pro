@@ -1,6 +1,6 @@
 # 🔒Polybius square cipher Pro
 
-English | [中文](README.zh.md)
+English | [简体中文](README.zh.md)
 
 ### About The Project
 
@@ -33,9 +33,9 @@ In order to improve its encryption strength, the author made the following impro
 
 ## ✈️Getting started
 
-### web 
+### Website
 
-( ￣︶￣ )✓ It's still under construction, and you can expect that.
+An on-line version has been released [Try it  now ✓](https://wzyskq.github.io/polybius_square_pro/)
 
 ### Installation
 1. Clone the repo
