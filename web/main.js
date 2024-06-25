@@ -1,11 +1,43 @@
+// 创建 <input> 表
+var table = document.getElementsByTagName('tbody')[0];
+for (let i = 0; i < 10; i++) {
+    let tr = document.createElement('tr');
+    let td0 = document.createElement('td');
+    td0.textContent = i;
+    tr.appendChild(td0);
+    for (let i = 0; i < 10; i++) {
+        let td = document.createElement('td');
+        let input0 = document.createElement('input');
+        input0.type = 'text';
+        input0.name = 'keyin';
+        td.appendChild(input0);
+        tr.appendChild(td);
+    }
+    table.appendChild(tr);
+}
+
+
+
 var inputs = Array.from(document.getElementsByName('keyin'));
 const cricon = document.getElementById('cricon');
 var argu = document.getElementById('argu');
 var arglen = document.getElementById('argulen');
-var keybox = document.getElementById('keybox');
+var auto = document.getElementById('auto');
 
-var cleankeymode = 'all';
-var currentIndex = 0;
+
+
+var emptyList = [
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""]
+];
 
 function reminder(text, time) {
     Toastify({
@@ -17,7 +49,7 @@ function reminder(text, time) {
 }
 
 
-// panel
+// 仪表盘
 var encode = document.getElementById('encode');
 var decode = document.getElementById('decode');
 
@@ -38,6 +70,10 @@ decode.addEventListener('input', (event) => {
     if (result === false || result === undefined) { result = ''; }
     deout.value = result;
 });
+auto.addEventListener('input', () => {
+    if (auto.checked) reminder('Continuous input mode!');
+    else reminder('Fixed input mode!')
+});
 
 function recode() { enout.value = core.encode(encode.value); }
 
@@ -51,10 +87,14 @@ function clean(id) {
     } else if (id == 'argu') {
         argu.value = '';
         arglen.innerHTML = 0;
-    } else if (id == 'keybox') {
-        keybox.value = '';
+        PolybiusSquire.key = emptyList;
+        window.inputkey(PolybiusSquire.key);
+        // 开启连续输入模式
+        auto.checked = true;
+        reminder('Continuous input mode!');
     }
 }
+
 
 function copy(id) {
     var text
@@ -79,173 +119,146 @@ function copy(id) {
 
 
 // key
-argu.value = window.key2str();
-keybox.value = JSON.stringify(PolybiusSquire.key);
+var reIndex = [];
 
+argu.value = window.key2str();
 arglen.innerHTML = argu.value.length;
 argu.addEventListener('input', (event) => {
     arglen.innerHTML = event.target.value.length;
-});
 
-
-keybox.addEventListener('input', (event) => {
-    PolybiusSquire.key = JSON.parse(event.target.value);
-    window.inputkey('eval(keybox.value)[i][j]', 'eval(keybox.value)');
-});
-
-function cleankey() {
-    if (cleankeymode == 'all') {
-        window.inputkey("''", 'eval(keybox.value)');
-        cricon.innerHTML = '<i class="bi bi-arrow-counterclockwise" onclick="cleankey()"></i>';
-        keybox.value = '';
-        cleankeymode = 'restore';
-    } else if (cleankeymode == 'restore') {
-        window.inputkey('PolybiusSquire.key[i][j]', 'PolybiusSquire.key');
-        cricon.innerHTML = '<i class="bi bi-x-circle" onclick="cleankey()"></i>';
-        keybox.value = JSON.stringify(PolybiusSquire.key);
-        cleankeymode = 'all';
-    }
-}
-
-// 将key中值依次输入到<input>
-// Input the values of key in order to <input>
-window.inputkey('PolybiusSquire.keybase[i][j]', 'PolybiusSquire.keybase');
-function inputkey(argument, listname) {
-    for (var i = 0; i < eval(listname).length; i++) {
-        for (var j = 0; j < eval(listname)[i].length; j++) {
-            inputs[i * eval(listname)[i].length + j].value = eval(argument);
-
-            if (argument == "''") inputs[i * eval(listname)[i].length + j].style.backgroundColor = 'rgba(255, 192, 203, 0.5)';
-            else inputs[i * eval(listname)[i].length + j].style.backgroundColor = '';
-
-            if (eval(argument) == '') inputs[i * eval(listname)[i].length + j].style.backgroundColor = 'rgba(255, 192, 203, 0.5)';
-            else {
-                if (eval(argument).length > 1) {
-                    inputs[i * eval(listname)[i].length + j].value = '';
-                    inputs[i * eval(listname)[i].length + j].style.backgroundColor = 'rgba(255, 192, 203, 0.5)';
+    if (arglen.textContent == 100) {
+        for (let char of argu.value) {
+            if (window.IndexesOf(argu.value, char)[1] !== 1) {
+                // console.log(char);
+                if (reIndex.indexOf(char) == -1) {
+                    reIndex.push(char);
                 }
             }
+        }
+
+        // console.log(reIndex)
+        for (let elem of reIndex) {
+            let info = `Value repeating! \nValue: ${elem[0]} \nLocation: ${window.IndexesOf(argu.value, elem)[0]}`;
+            reminder(info, 3000);
+            console.log(info);
+        }
+
+        console.log('----- -----');
+        reminder('Press F12 to check more information!', 5000);
+
+        if (reIndex == []) {
+            PolybiusSquire.key = str2key(argu.value)
+            window.inputkey(PolybiusSquire.key);
+            // 关闭连续输入模式
+            auto.checked = false;
+            reminder('Fixed input mode!')
+        } else reIndex = []
+
+    } else {
+        PolybiusSquire.key = emptyList;
+        window.inputkey(PolybiusSquire.key);
+    }
+});
+
+
+// 将 key 中值依次输入到 <input>
+window.inputkey(PolybiusSquire.key);
+function inputkey(list) {
+    for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
+            inputs[i * 10 + j].value = list[i][j];
+            if (list[i][j] == '') inputs[i * 10 + j].style.backgroundColor = 'rgba(255, 192, 203, 0.5)';
+            else inputs[i * 10 + j].style.backgroundColor = '';
         }
     }
 }
 
+
 // 在多个input标签之间移动
-// Move between multiple input tags
+var ckey = 0;
+var xkey = 0;
+var ykey = 0;
+
 inputs.forEach(function (input, index) {
     input.addEventListener('focus', () => {
-        currentIndex = index;
+        ckey = index;
+        xkey = Math.floor(ckey / 10);
+        ykey = ckey % 10;
+        // inputs[index].value = '';
+        // inputs[index].style.backgroundColor = 'rgba(255, 192, 203, 0.5)';
     });
 });
 document.addEventListener('keydown', function (event) {
     const focusedElement = document.activeElement;
     if (inputs.includes(focusedElement)) {
         if (event.key === "ArrowLeft") {
-            currentIndex = (currentIndex === 0) ? inputs.length - 1 : currentIndex - 1;
-            inputs[currentIndex].focus();
+            ckey = (ckey === 0) ? inputs.length - 1 : ckey - 1;
+            inputs[ckey].focus();
         } else if (event.key === "ArrowUp") {
-            currentIndex = (currentIndex - 10 < 0) ? inputs.length - (10 - currentIndex) : currentIndex - 10;
-            inputs[currentIndex].focus();
+            ckey = (ckey - 10 < 0) ? inputs.length - (10 - ckey) : ckey - 10;
+            inputs[ckey].focus();
         } else if (event.key === "ArrowRight") {
-            currentIndex = (currentIndex === inputs.length - 1) ? 0 : currentIndex + 1;
-            inputs[currentIndex].focus();
+            ckey = (ckey === inputs.length - 1) ? 0 : ckey + 1;
+            inputs[ckey].focus();
         } else if (event.key === "ArrowDown") {
-            currentIndex = (currentIndex + 10 > inputs.length - 1) ? 10 - (inputs.length - currentIndex) : currentIndex + 10;
-            inputs[currentIndex].focus();
+            ckey = (ckey + 10 > inputs.length - 1) ? 10 - (inputs.length - ckey) : ckey + 10;
+            inputs[ckey].focus();
         }
     }
 });
 
-// 监测方阵各值，输入长度大于一个字符自动清零
-// Monitor the values of the square matrix, and input lengths greater than one character are automatically zeroed
-inputs.forEach(input => {
-    input.addEventListener('input', function () {
-        if (this.value.length == 1) {
-            var k1 = (currentIndex - (currentIndex % 10)) / 10
-            var k2 = currentIndex % 10
-            if (PolybiusSquire.key[k1][k2] != this.value) {
-                PolybiusSquire.key[k1][k2] = this.value;
-            }
-        }
-        keybox.value = JSON.stringify(PolybiusSquire.key);
 
-        if (this.value.length > 1) this.value = '';
-        if (this.value == '') this.style.backgroundColor = 'rgba(255, 192, 203, 0.5)';
-        else {
-            this.style.backgroundColor = '';
-            inputs[currentIndex + 1].focus();
+// 监测方阵各值，输入长度大于一个字符自动取末尾字符
+inputs.forEach((input) => {
+    input.addEventListener('input', function () {
+        if (this.value.length < 1) {
+            this.style.backgroundColor = 'rgba(255, 192, 203, 0.5)';
+            PolybiusSquire.key
         }
+        else {
+            this.value = this.value[this.value.length - 1];
+            this.style.backgroundColor = ''
+            // PolybiusSquire.key[xkey][ykey] = this.value;
+        }
+
+        let reElemValue = PolybiusSquire.encode(this.value);
+        // console.log(reElemValue);
+
+        //重复元素清除
+        if (reElemValue && +reElemValue !== +ckey) {
+            this.value = '';
+            this.style.backgroundColor = 'rgba(255, 192, 203, 0.5)';
+            PolybiusSquire.key[xkey][ykey] = '';
+
+            inputs[+reElemValue].value = '';
+            inputs[+reElemValue].style.backgroundColor = 'rgba(255, 192, 203, 0.5)';
+            PolybiusSquire.key[Math.floor(reElemValue / 10)][reElemValue % 10] = '';
+            reminder('Value repeating!');
+        } else {
+            PolybiusSquire.key[xkey][ykey] = this.value;
+            if (auto.checked && this.value !== '') { inputs[ckey + 1].focus(); }
+        }
+        argu.value = key2str(PolybiusSquire.key);
+        arglen.innerHTML = argu.value.length;
+
+
     });
+
     input.addEventListener('keydown', function (event) {
         if (this.value == '') {
             if (event.key === 'Backspace') {
-                inputs[currentIndex - 1].focus();
+                if (+ckey == 0) inputs[99].focus();
+                else inputs[ckey - 1].focus();
+            } else if (event.key === 'Delete') {
+                if (+ckey == 99) inputs[0].focus();
+                else inputs[ckey + 1].focus();
             }
         }
     });
 });
 
 
-function random() {
-    if (argu.value.length == 100) {
-        var key = str2key(shuffle(argu.value));
-        PolybiusSquire.key = key;
-        keybox.value = JSON.stringify(key);
-        window.inputkey('eval(keybox.value)[i][j]', 'eval(keybox.value)');
-    } else {
-        reminder("Elem's length must be 100!");
-    }
-
-}
-
-
-function sequential() {
-    if (argu.value.length == 100) {
-        PolybiusSquire.key = str2key(argu.value);
-        keybox.value = JSON.stringify(str2key(argu.value));
-        window.inputkey('eval(keybox.value)[i][j]', 'eval(keybox.value)');
-    } else {
-        reminder("Elem's length must be 100!");
-    }
-}
-
-// 将key存入cookie
-// Store key in cookie
-function savekey() {
-    var key = key2str();
-
-    // console.log(key);
-
-    var key1 = key.split(';')[0];
-    var key2 = key.split(';')[1];
-    document.cookie = `key1=${key1}`;
-    document.cookie = `key2=${key2}`;
-    reminder('Key saved!');
-}
-
-// 从cookie中还原key
-// Restore key from cookie
-function loadkey() {
-    try {
-        var key1 = document.cookie.split(';')[0];
-        var key2 = document.cookie.split(';')[1];
-
-        key1 = key1.match(/=(.+)/)[1];
-        key2 = key2.match(/=(.+)/)[1];
-        var key = key1 + ';' + key2;
-
-        key = str2key(key);
-        PolybiusSquire.keybase = key;
-        PolybiusSquire.key = PolybiusSquire.keybase;
-    } catch {
-        PolybiusSquire.key = PolybiusSquire.keybase;
-        reminder('No key!');
-    }
-    keybox.value = JSON.stringify(PolybiusSquire.key);
-    window.inputkey('eval(keybox.value)[i][j]', 'eval(keybox.value)');
-}
-
 // 将一串字符串打乱顺序
-// Shuffle a string
 function shuffle(str) {
     var arr = str.split('');
     var result = '';
@@ -257,8 +270,45 @@ function shuffle(str) {
     return result;
 }
 
+
+function random() {
+    if (argu.value.length == 100) {
+        argu.value = shuffle(argu.value)
+        var key = str2key(argu.value);
+        PolybiusSquire.key = key;
+        window.inputkey(PolybiusSquire.key);
+    } else {
+        reminder("Elem's length must be 100!");
+    }
+
+}
+
+
+
+//将 key 存入 localStorage
+function savekey() {
+    var key = key2str();
+    localStorage.setItem('key', key);
+    reminder('Key saved!');
+}
+
+
+// 从 localStorage 中还原 key
+function loadkey() {
+    try {
+        var key = localStorage.getItem('key');
+        argu.value = key;
+        key = str2key(key);
+        PolybiusSquire.key = key;
+        window.inputkey(key);
+    } catch {
+        reminder('No key!');
+    }
+}
+
+
+
 // 把列表PolybiusSquire.key中的字符变为一个字符串
-// Turn a list of characters in PolybiusSquire.key into a string
 function key2str() {
     var key = '';
     for (var i = 0; i < PolybiusSquire.key.length; i++) {
@@ -270,7 +320,6 @@ function key2str() {
 }
 
 // 把字符串变为PolybiusSquire.key列表
-// Turn a string into PolybiusSquire.key list
 function str2key(str) {
     var key = [];
     for (var i = 0; i < str.length; i++) {
@@ -280,8 +329,19 @@ function str2key(str) {
     return key;
 }
 
+// 找出 keyword 在 str 中的所有位置
+function IndexesOf(str, keyword) {
+    let indexes = [];
+    let pos = str.indexOf(keyword);
+
+    while (pos !== -1) {
+        indexes.push(pos);
+        pos = str.indexOf(keyword, pos + 1);
+    }
+    return [indexes, indexes.length];
+}
+
 // 列表样例
-// List sample
 // [
 //     ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
 //     ["K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"],

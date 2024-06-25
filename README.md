@@ -9,7 +9,7 @@ Polybius square cipher, also known as chess-board cipher, has the advantage of b
 Therefore, chessboard ciphers are usually used for some simple encryption scenarios, and are not suitable for situations with high security requirements.
 
 In order to improve its encryption strength, the author made the following improvements: 
-1. 🏁Key strengthening, the original 5×5 square matrix to 9×9
+1. 🏁Key strengthening, the original 5×5 square matrix to 10 × 10
 
 2. 🔐Insert new random numbers into the encrypted password for interference to prevent the same plaintext from being cracked by word frequency analysis. 
 
@@ -27,15 +27,15 @@ In order to improve its encryption strength, the author made the following impro
 
 4. The output ciphertext is highly complex and about twice as long as the plaintext
 
-5. The key can be **customized** and there are many kinds of the same character 81! Combination mode
+5. The key can be **customized** and there are many kinds of the same character 100 Combination mode
 
 6. Input plaintext length up to 1000+ characters (more parameters can be used, but not recommended)
 
 ## ✈️Getting started
 
-### Website
+### Website (🪄Recommend
 
-An on-line version has been released [Try it  now ✓](https://wzyskq.github.io/polybius_square_pro/)
+An website version has been released on my page! [Try it  now ✓](https://wzyskq.github.io/polybius_square_pro/)
 
 ### Installation
 1. Clone the repo
@@ -48,6 +48,24 @@ git clone https://github.com/wzyskq/polybius_square_pro.git
 pip install polybius-square-pro
 ```
 ## 🎉Usage
+
+### Website(🪄Recommend
+
+- Usage
+    1. `Encode`: Enter plaintext, and the ciphertext will be automatically displayed in the Result section. If you are not satisfied with the ciphertext, you can click the refresh button on the right side of the Result section to update the ciphertext.
+    2. `Decode`: Enter the ciphertext, and the plaintext will be automatically displayed in the Result section.
+    3. `Element`: Stores the elements that make up the key, and the order is bound to the key table.
+    4. `Save`: Save the key in the browser (localStorage).
+    5. `Load`: Load the key stored in the browser.
+    6. `Random`: Shuffle the keys in Elem and the password table.
+    7. `Default`: Restore the default key.
+    8. `Button`
+        - `On`: Continuous input mode, automatically focus on the next cell in the key table after entering a cell (automatically enabled after clearing the key).
+        - `Off`: Fixed input mode, the cursor remains fixed in a cell when entering the password table (automatically disabled when Elem length is 100).
+- Custom Key
+    - Clear Elem or the key table, and then you can create your own key!
+
+### Python
 
 **clone:**
 

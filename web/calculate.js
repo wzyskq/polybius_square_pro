@@ -9,7 +9,7 @@ class PolybiusSquire {
         ['f', 'g', 'h', 'i', 'k', '~', '|', '<', '>', ' '],
         ['l', 'm', 'n', 'o', 'p', '(', ')', '{', '}', '\\'],
         ['q', 'r', 's', 't', 'u', 'J', 'j', '\'', '\"', '?'],
-        ['v', 'w', 'x', 'y', 'z', '⌈', '⌋', '⌊', '⌉', '·']
+        ['v', 'w', 'x', 'y', 'z', '∀', '∃', '¥', '€', '·']
     ];
     static key = this.keybase
 
@@ -48,7 +48,7 @@ class PolybiusSquire {
         try {
             const splited = ciphertext.match(/.{1,2}/g);
             for (let i of splited) {
-                i = parseInt(i);
+                i = +i;
                 originalList.push(key[Math.floor(i / 10)][i % 10]);
             }
         } catch {
@@ -64,7 +64,7 @@ class Double {
     static encode(num) {
         let result = '';
         for (let i = 0; i < num.length; i++) {
-            result += num[i] + Math.floor(Math.random() * 6);
+            result += num[i] + Math.floor(Math.random() * 10);
         }
         return result;
     }
