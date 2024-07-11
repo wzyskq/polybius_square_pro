@@ -136,23 +136,27 @@ argu.addEventListener('input', (event) => {
             }
         }
 
-        // console.log(reIndex)
-        for (let elem of reIndex) {
-            let info = `Value repeating! \nValue: ${elem[0]} \nLocation: ${window.IndexesOf(argu.value, elem)[0]}`;
-            reminder(info, 3000);
-            console.log(info);
-        }
-
-        console.log('----- -----');
-        reminder('Press F12 to check more information!', 5000);
-
-        if (reIndex == []) {
+        // console.log(reIndex);
+        if (reIndex.length == 0) {
             PolybiusSquire.key = str2key(argu.value)
             window.inputkey(PolybiusSquire.key);
-            // 关闭连续输入模式
-            auto.checked = false;
+
+            auto.checked = false;  // 关闭连续输入模式
             reminder('Fixed input mode!')
-        } else reIndex = []
+
+        } else {
+            for (let elem of reIndex) {
+                let info = `Value repeating! \nValue: ${elem[0]} \nLocation: ${window.IndexesOf(argu.value, elem)[0]}`;
+
+                console.log(info);
+                reminder(info, 3000);
+
+                console.log('----- -----');
+                reminder('Press F12 to check more information!', 5000);
+
+                reIndex = []
+            }
+        } 
 
     } else {
         PolybiusSquire.key = emptyList;
@@ -162,7 +166,7 @@ argu.addEventListener('input', (event) => {
 
 
 // 将 key 中值依次输入到 <input>
-window.inputkey(PolybiusSquire.key);
+window.inputkey(PolybiusSquire.key);  // 初始化
 function inputkey(list) {
     for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {
