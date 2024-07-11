@@ -75,12 +75,14 @@ tr
             }
 
 
-            &:nth-child(2), &:nth-child(3)
+            &:nth-child(2),
+            &:nth-child(3)
             {
                 padding: 0 5px;
             }
 
-            &:nth-child(4), &:nth-child(5)
+            &:nth-child(4),
+            &:nth-child(5)
             {
                 font-size: small;
             }
@@ -143,17 +145,22 @@ tr
                     box-shadow: 4px 4px 8px #bebebe,
                         -4px -4px 8px #ffffff;
 
-                    .bi { color: #000; }
+                    .bi
+                    {
+                        color: #000;
+                    }
                 }
             }
         }
     }
 }
 
-#auto:checked + label{
+#auto:checked+label
+{
     background-color: rgba(255, 192, 203, 0.5);
 
-    &::before{
+    &::before
+    {
         content: '';
         position: relative;
         left: 13px;
@@ -257,4 +264,47 @@ input
 {
     margin-right: 10px;
     transform: translateY(1px);
+}
+
+
+
+// 以下css来自 https://tholman.com/github-corners/
+.github-corner:hover .octo-arm
+{
+    animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave
+{
+
+    0%,
+    100%
+    {
+        transform: rotate(0)
+    }
+
+    20%,
+    60%
+    {
+        transform: rotate(-25deg)
+    }
+
+    40%,
+    80%
+    {
+        transform: rotate(10deg)
+    }
+}
+
+@media (max-width:500px)
+{
+    .github-corner:hover .octo-arm
+    {
+        animation: none
+    }
+
+    .github-corner .octo-arm
+    {
+        animation: octocat-wave 560ms ease-in-out
+    }
 }
